@@ -1,16 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            padding: 20px;
+        }
+
+        .tasks {
+            background-color: beige;
+            border: 1px solid white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 5px;
+        }
+
+        .tasks h4 {
+            margin: 0 0 10px 0;
+        }
+        .new_task{
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-    {% for todo_list in todo_lists %}
-        <h4>{{ todo_list.status }} {{ todo_list.deadline }}</h4>
-        <p>{{ todo_list.description }}</p>
+<a class="new_task" href="/create/">Добавить задачу</a>
+    {% for task in tasks %}
+        <div class="tasks">
+            <h4>{{ task.deadline }}</h4>
+            <h4>{{ task.status }}</h4>
+            <p>{{ task.description }}</p>
+            <a href="{% url 'task_detail' id=task.id %}">Detail</a>
+        </div>
     {% endfor %}
 </body>
 </html>
