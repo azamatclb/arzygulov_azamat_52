@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from webapp.models import ToDoList
 
@@ -24,8 +24,6 @@ def create_task(request):
 
 
 def task_detail(request):
-    try:
-        task = ToDoList.objects.get(id=request.GET.get('id'))
-    except ToDoList.DoesNotExist:
-        return HttpResponseRedirect("/")
-    return render(request, "view_detail.html", context={"task": task})
+    task_id = request.GET.get('id')
+    task = get_object_or_404(ToDoList, id=task_id)
+    return render(request, 'view_detail.html', {'task': task})

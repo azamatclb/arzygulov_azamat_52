@@ -36,7 +36,7 @@
             <h4>{{ task.deadline }}</h4>
             <h4>{{ task.status }}</h4>
             <p>{{ task.description }}</p>
-            <a href="{% url 'task_detail' id=task.id %}">Detail</a>
+            <a href="{% url 'task_detail' %}?id={{ task.id }}">{{ task.description }}</a>
         </div>
     {% endfor %}
 </body>
